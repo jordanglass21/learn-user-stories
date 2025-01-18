@@ -8,9 +8,13 @@ Open your command prompt and navigate to the test directory by running:
 
 **Step 2**: Run the Tests
 
+Ensure bankTests.ts is updated:
+
+`tsc .\bankTests.ts `
+
 Execute the test file using Node.js:
 
-`node bankTests.js`
+`node .\bankTests.js`
 
 **Step 3**: Verify the Results
 
@@ -18,5 +22,7 @@ Check the console output for test results. If all tests pass, you will see a suc
 
 
 **Github Info**
+
 jordanglass21
+
 https://github.com/jordanglass21/learn-user-stories

@@ -67,7 +67,7 @@ export class Bank implements BankType {
             throw new Error('Invalid account number');
         }
         if(!this.isUsernameExisits(username)) {
-            throw new Error('User not found');
+            throw new Error('Username not found');
         }
         if(age < 18) {
             throw new Error('User is under 18');

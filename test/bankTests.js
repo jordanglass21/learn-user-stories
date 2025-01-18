@@ -34,11 +34,6 @@ try {
 }
 catch (e) {
     console.log('Scenario 2 passed');
-}
-try { // display results
-    bank.printAccount(1234567899);
-}
-catch (e) {
     console.log(e.message);
 }
 // Scenario 3: unsuccessful account creation due to invalid username
@@ -48,19 +43,14 @@ try {
 }
 catch (e) {
     console.log('Scenario 3 passed');
-}
-try { // display results
-    bank.printAccount(1234567888);
-}
-catch (e) {
     console.log(e.message);
 }
 // user story 2
 console.log("------------------User Story 2------------------");
 // Scenario 1: customer is able to deposit money into an account
 try {
-    var balance = bank.deposit(1234567892, 100);
-    if (balance === 100) {
+    var balance_1 = bank.deposit(1234567892, 100);
+    if (balance_1 === 100) {
         console.log('Scenario 1 passed');
         bank.printAccount(1234567892); // display results
     }
@@ -74,30 +64,42 @@ catch (e) {
 }
 // Scenario 2: customer is unable to deposit money into bank account becuase
 // the bank account does not exist
+var balance3 = 0;
 try {
-    bank.deposit(1299999990, 100);
+    balance3 = bank.deposit(1299999990, 100);
     console.log('Scenario 2 failed');
 }
 catch (e) {
-    console.log('Scenario 2 passed');
-    console.log(e.message);
+    if (balance3 === 0) {
+        console.log('Scenario 2 passed');
+        console.log(e.message);
+    }
+    else {
+        console.log('Scenario 2 failed');
+    }
 }
 // Scenario 3: customer is unable to deposit money into bank account because
 // the indicated deposit amount is negative
+var balance4 = 0;
 try {
-    bank.deposit(1234567890, -100);
+    balance4 = bank.deposit(1234567892, -100);
     console.log('Scenario 3 failed');
 }
 catch (e) {
-    console.log('Scenario 3 passed');
-    console.log(e.message);
+    if (balance4 === 0) {
+        console.log('Scenario 3 passed');
+        console.log(e.message);
+    }
+    else {
+        console.log('Scenario 3 failed');
+    }
 }
 // user story 3
 console.log("------------------User Story 3------------------");
 // Scenario 1: customer is able to withdraw money from an account
 try {
-    var balance = bank.withdraw(1234567892, 100);
-    if (balance === 0) {
+    var balance_2 = bank.withdraw(1234567892, 10);
+    if (balance_2 === 90) {
         console.log('Scenario 1 passed');
         bank.printAccount(1234567892);
     }
@@ -110,31 +112,59 @@ catch (e) {
 }
 // Scenario 2: customer is unable to withdraw money from bank account because
 // the bank account does not exist
+var balance = 90;
 try {
-    bank.withdraw(1299999990, 100);
+    balance = bank.withdraw(1299999990, 10);
     console.log('Scenario 2 failed');
 }
 catch (e) {
-    console.log('Scenario 2 passed');
-    console.log(e.message);
+    if (balance === 90) {
+        console.log('Scenario 2 passed');
+        console.log(e.message);
+    }
+    else {
+        console.log('Scenario 2 failed');
+    }
 }
 // Scenario 3: customer is unable to withdraw money from their bank account because
 // the indicated withdrawal amount is greater than their account balance
+var balance2 = 90;
 try {
-    bank.withdraw(1234567890, -1000000000);
+    balance2 = bank.withdraw(1234567892, 1000000000);
     console.log('Scenario 3 failed');
 }
 catch (e) {
-    console.log('Scenario 3 passed');
-    console.log(e.message);
+    if (balance2 === 90) {
+        console.log('Scenario 3 passed');
+        console.log(e.message);
+    }
+    else {
+        console.log('Scenario 3 failed');
+    }
+}
+// Scenario 4: customer is unable to withdraw money from their bank account because
+// the indicated withdrawal amount is negative
+var balance5 = 90;
+try {
+    balance5 = bank.withdraw(1234567892, -1);
+    console.log('Scenario 4 failed');
+}
+catch (e) {
+    if (balance5 === 90) {
+        console.log('Scenario 4 passed');
+        console.log(e.message);
+    }
+    else {
+        console.log('Scenario 4 failed');
+    }
 }
 // user story 4
 console.log("------------------User Story 4------------------");
 // Scenario 1: customer is able to check the balance of an account
 try {
-    var balance = bank.checkBalance(1234567892);
+    var balance_3 = bank.checkBalance(1234567892);
     console.log('Scenario 1 passed');
-    console.log("Balance: $%d", balance);
+    console.log("Balance: $%d", balance_3);
 }
 catch (e) {
     console.log('Scenario 1 failed');
