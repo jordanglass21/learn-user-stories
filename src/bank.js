@@ -31,6 +31,9 @@ var Bank = /** @class */ (function () {
     Bank.prototype.isUsernameExisits = function (username) {
         return this.usernames.includes(username);
     };
+    Bank.prototype.accountExists = function (accountNumber) {
+        return this.accounts.some(function (account) { return account.id === accountNumber; });
+    };
     /**
      *
      * @param username
@@ -57,6 +60,47 @@ var Bank = /** @class */ (function () {
         };
         this.accounts.push(account);
         return account;
+    };
+    Bank.prototype.deposit = function (accountNumber, amount) {
+        var account = this.findAccountById(accountNumber);
+        if (account === undefined) {
+            throw new Error('User not found');
+        }
+        if (amount <= 0) {
+            throw new Error('Amount must be positive');
+        }
+        account.balance += amount;
+        return account.balance;
+    };
+    Bank.prototype.withdraw = function (accountNumber, amount) {
+        var account = this.findAccountById(accountNumber);
+        if (account === undefined) {
+            throw new Error('User not found');
+        }
+        if (amount <= 0) {
+            throw new Error('Amount must be positive');
+        }
+        if (account.balance < amount) {
+            throw new Error('Insufficient funds');
+        }
+        account.balance -= amount;
+        return account.balance;
+    };
+    Bank.prototype.checkBalance = function (accountNumber) {
+        var account = this.findAccountById(accountNumber);
+        if (account === undefined) {
+            throw new Error('User not found');
+        }
+        return account.balance;
+    };
+    Bank.prototype.printAccount = function (accountNumber) {
+        var account = this.findAccountById(accountNumber);
+        if (account === undefined) {
+            throw new Error('User not found');
+        }
+        console.log('------------------------------------------------');
+        console.log("| Account Number: %d | Balance: $%d |", accountNumber, account.balance);
+        console.log('------------------------------------------------');
     };
     return Bank;
 }());
